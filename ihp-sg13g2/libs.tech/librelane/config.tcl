@@ -142,7 +142,7 @@ set ::env(FP_PDN_CORE_RING_HOFFSET) 4.5
 set ::env(MACRO_BLOCKAGES_LAYER) "Metal1 Metal2 Metal3 Metal4 Metal5 TopMetal1"
 
 # Used for parasitics estimation, IR drop analysis, etc
-#set ::env(LAYERS_RC) [dict create]
+set ::env(LAYERS_RC) [dict create]
 
 # RC fit from OpenROAD
 # https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/commit/a3ea4d0a4c10cb65a5314ed541dfc1bc42979f8d
