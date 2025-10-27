@@ -6,6 +6,10 @@ if { ![info exist ::env(STD_CELL_LIBRARY)] } {
 	set ::env(STD_CELL_LIBRARY) sg13g2_stdcell
 }
 
+if { ![info exist ::env(PAD_CELL_LIBRARY)] } {
+	set ::env(PAD_CELL_LIBRARY) sg13g2_io
+}
+
 # Tools
 set ::env(PRIMARY_GDSII_STREAMOUT_TOOL) "magic"
 
@@ -32,49 +36,12 @@ set ::env(CELL_VERILOG_MODELS) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD
 set ::env(CELL_SPICE_MODELS) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/spice/$::env(STD_CELL_LIBRARY).spice"
 set ::env(CELL_CDLS) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/cdl/$::env(STD_CELL_LIBRARY).cdl"
 
-# IO pads
+# Pad cells
 set ::env(PAD_LEFS) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sg13g2_io/lef/sg13g2_io.lef"
 set ::env(PAD_GDS) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sg13g2_io/gds/sg13g2_io.gds"
 set ::env(PAD_VERILOG_MODELS) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sg13g2_io/verilog/sg13g2_io.v"
 set ::env(PAD_SPICE_MODELS) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sg13g2_io/spice/sg13g2_io.spi"
 set ::env(PAD_CDLS) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sg13g2_io/cdl/sg13g2_io.cdl"
-
-# Pad IO sites
-set ::env(PAD_IO_SITE_NAME) "IOLibSite"
-set ::env(PAD_CORNER_SITE_NAME) "IOLibCSite"
-
-# Pad fake IO sites information
-set ::env(PAD_FAKE_IO_SITE_HEIGHT) "180"
-set ::env(PAD_FAKE_IO_SITE_WIDTH) "1"
-set ::env(PAD_FAKE_CORNER_SITE_HEIGHT) "180"
-set ::env(PAD_FAKE_CORNER_SITE_WIDTH) "180"
-
-# Set IO pad information
-set ::env(PAD_CELLS) [dict create]
-dict set ::env(PAD_CELLS) "sg13g2_IOPad*" "80, 180"
-set ::env(PAD_CORNER) "sg13g2_Corner"
-set ::env(PAD_FILLERS) "\
-    sg13g2_Filler10000\
-    sg13g2_Filler4000\
-    sg13g2_Filler2000\
-    sg13g2_Filler1000\
-    sg13g2_Filler400\
-    sg13g2_Filler200\
-"
-
-# Pad bondpad information (if needed)
-# TODO bondpads need to be part of the PDK
-set ::env(PAD_BONDPAD_NAME) "bondpad_70x70"
-set ::env(PAD_BONDPAD_WIDTH) "70"
-set ::env(PAD_BONDPAD_HEIGHT) "70"
-set ::env(PAD_BONDPAD_OFFSETS) [dict create]
-dict set ::env(PAD_BONDPAD_OFFSETS) "sg13g2_IOPad*" "5.0, -70.0"
-
-# Pad io terminals (if needed)
-#set ::env(PAD_PLACE_IO_TERMINALS)
-
-# Sealring offset
-set ::env(PAD_EDGE_SPACING) "140"
 
 ## magic setup
 set ::env(MAGICRC) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/magic/ihp-sg13g2.magicrc"
